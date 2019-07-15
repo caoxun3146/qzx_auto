@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="suite1"  preserve-order="true">
+    <test name="testngauto">
+        <classes>
+            <class name="qzx.auto.HomePage">
+                <methods>
+                    <include name="signIn"/>
+                    <include name="getZeroStatus"/>
+                    <include name="homePage"/>
+                </methods>
+            </class>
+
+            <class name = "qzx.auto.CommodityDetails">
+                <methods>
+                    <!--<include name="signIn"/>-->
+                    <include name="queryDetails"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
