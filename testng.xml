@@ -5,7 +5,6 @@
         <classes>
             <class name="qzx.auto.HomePage">
                 <methods>
-                    <include name="signIn"/>
                     <include name="getZeroStatus"/>
                     <include name="homePage"/>
                 </methods>
@@ -13,8 +12,13 @@
 
             <class name = "qzx.auto.CommodityDetails">
                 <methods>
-                    <!--<include name="signIn"/>-->
                     <include name="queryDetails"/>
+                </methods>
+            </class>
+
+            <class name = "qzx.auto.ZeroStatus">
+                <methods>
+                    <include name="getZeroStatus"/>
                 </methods>
             </class>
         </classes>

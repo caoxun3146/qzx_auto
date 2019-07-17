@@ -3,9 +3,8 @@ package qzx.auto;
 import com.alibaba.fastjson.JSON;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import qzx.jsonParam.PheadParam;
 import qzx.model.homePage.JsonHomePageBean;
-import qzx.model.signIn.JsonSignInBean;
-import qzx.jsonParam.JsonParameter;
 import qzx.utils.HttpClientUtil;
 import qzx.utils.SignInUtil;
 
@@ -17,10 +16,14 @@ public class HomePage {
      * 登录接口 10001
      * http://test.vipgift.gmilesquan.com/quAccount/common?funid=10001&shandle=0&handle=0
      */
-    public String token ;
+    public String token;
+    public String phoneId;
+
     @BeforeClass
     public void signIn() throws IOException {
-     token = SignInUtil.getToken();
+        //token = SignInUtil.getToken();
+        token = SignInUtil.getToken().getAccount().getAccessToken();
+        phoneId = SignInUtil.getToken().getAccount().getPhoneId();
     }
 
     /**
@@ -31,17 +34,20 @@ public class HomePage {
     public void homePage() throws IOException {
         String domainDev = "http://test.vipgift.gmilesquan.com";
         String URL = "/quMall/common?funid=30001&shandle=0&handle=0";
-        String param = JsonParameter.getHomePageJson(token);
 
+
+        String variable = "\"tabId\":\"1000\",\"personal\":1";
+
+        String param = PheadParam.getPhead(token,variable);
         String result = HttpClientUtil.SendHttpRequest("POST", domainDev + URL, param);
         // System.out.println("---------   " + result);
 
         JsonHomePageBean jsonHomePageBean = JSON.parseObject(result, JsonHomePageBean.class);//json字符串转对象
 
-        if(jsonHomePageBean.getModuleDtoList().get(4).getTitle().equals("趣玩福利社")){ // 返回的状态为 1 表示登录成功
+        if (jsonHomePageBean.getModuleDtoList().get(4).getTitle().equals("趣玩福利社")) { // 返回的状态为 1 表示登录成功
             System.out.println("校验通过, [趣玩福利社] 入口");
-        }else {
-            System.out.println("校验失败");
+        } else {
+            System.out.println("校验失败 , " + jsonHomePageBean.getModuleDtoList().get(4).getTitle());
         }
     }
 }

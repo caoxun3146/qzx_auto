@@ -3,10 +3,8 @@ package qzx.auto;
 import com.alibaba.fastjson.JSON;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import qzx.jsonParam.JsonParameter;
 import qzx.jsonParam.PheadParam;
 import qzx.model.commodityDetails.JsonCommodityDetailsBean;
-import qzx.model.signIn.JsonSignInBean;
 import qzx.utils.HttpClientUtil;
 import qzx.utils.SignInUtil;
 
@@ -15,9 +13,12 @@ import java.io.IOException;
 public class CommodityDetails {
 
     public String token ;
+    public String phoneId;
     @BeforeClass
     public void signIn() throws IOException {
-        token = SignInUtil.getToken();
+        //token = SignInUtil.getToken();
+        token = SignInUtil.getToken().getAccount().getAccessToken();
+        phoneId = SignInUtil.getToken().getAccount().getPhoneId();
     }
 
     /**
@@ -28,9 +29,9 @@ public class CommodityDetails {
     public void  queryDetails() throws IOException {
         String domainDev = "http://test.vipgift.gmilesquan.com";
         String URL = "/quMall/common?funid=30300&shandle=0&handle=0";
-        //String param = JsonParameter.getCommodity(token);
-        String variable = "\"sourceId\":\"541009939400\",\"bussType\":0";
-        String param = PheadParam.getPhead(variable);
+        String sourceId = "541009939400";
+        String variable = "\"sourceId\":\""+sourceId+"\",\"bussType\":0";
+        String param = PheadParam.getPhead(token,variable);
 
         String result = HttpClientUtil.SendHttpRequest("POST", domainDev + URL, param);
 
