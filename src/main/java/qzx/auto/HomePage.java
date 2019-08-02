@@ -38,7 +38,7 @@ public class HomePage {
 
         String variable = "\"tabId\":\"1000\",\"personal\":1";
 
-        String param = PheadParam.getPhead(token,variable);
+        String param = PheadParam.getPhead(token,phoneId,variable);
         String result = HttpClientUtil.SendHttpRequest("POST", domainDev + URL, param);
         // System.out.println("---------   " + result);
 

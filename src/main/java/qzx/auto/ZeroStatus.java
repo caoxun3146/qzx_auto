@@ -36,7 +36,7 @@ public class ZeroStatus {
 
         String variable = "";
 
-        String param = PheadParam.getPhead(token,"");
+        String param = PheadParam.getPhead(token,phoneId,"");
         String result = HttpClientUtil.SendHttpRequest("POST", domainDev + URL, param);
         System.out.println("---------   " + result);
 

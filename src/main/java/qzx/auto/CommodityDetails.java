@@ -31,7 +31,7 @@ public class CommodityDetails {
         String URL = "/quMall/common?funid=30300&shandle=0&handle=0";
         String sourceId = "541009939400";
         String variable = "\"sourceId\":\""+sourceId+"\",\"bussType\":0";
-        String param = PheadParam.getPhead(token,variable);
+        String param = PheadParam.getPhead(token,phoneId,variable);
 
         String result = HttpClientUtil.SendHttpRequest("POST", domainDev + URL, param);
 

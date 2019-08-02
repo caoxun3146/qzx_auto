@@ -1,7 +1,7 @@
 package qzx.jsonParam;
 
 public class PheadParam {
-    public static String getPhead(String token, String variable) {
+    public static String getPhead(String token, String phoneId, String variable) {
 
         if(variable.equals("")){
             String phead = "{\n" +
@@ -10,7 +10,7 @@ public class PheadParam {
                     "\t\"data\": {\n" +
                     "\t\t\"phead\": {\n" +
                     "\t\t\t\"pversion\": 92,\n" +
-                    "\t\t\t\"phoneid\": \"0776f3c9876341ad\",\n" +
+                    "\t\t\t\"phoneid\": \""+phoneId+"\",\n" +
                     "\t\t\t\"phone\": \"vivo Y85A\",\n" +
                     "\t\t\t\"imei\": \"869701031290789\",\n" +
                     "\t\t\t\"cversion\": 144,\n" +
